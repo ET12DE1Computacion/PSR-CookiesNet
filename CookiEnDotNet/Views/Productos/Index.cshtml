@@ -1,0 +1,12 @@
+@model IEnumerable<Producto>
+
+<h2>Catálogo de Productos</h2>
+<ul>
+    @foreach (Producto p in Model)
+    {
+        <li>
+            @p.Nombre - $@p.PrecioUnitario
+            <a asp-controller="Productos" asp-action="Detalle" asp-route-id="@p.Id">[Ver Detalles]</a>
+        </li>
+    }
+</ul>

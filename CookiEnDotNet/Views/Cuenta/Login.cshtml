@@ -1,0 +1,48 @@
+@model LoginVM
+
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Iniciar Sesión</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Login" method="post">
+                        <!-- Muestra credenciales inválidas o errores de modelo -->
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="NombreUsuario" class="form-label fw-bold">Nombre de Usuario</label>
+                            <input asp-for="NombreUsuario" class="form-control" placeholder="Ej: jperez" autocomplete="username" />
+                            <span asp-validation-for="NombreUsuario" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Password" class="form-label fw-bold">Contraseña</label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="••••••••" autocomplete="current-password" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center bg-light">
+                    <span class="text-muted">Todavía no tenes cuenta?</span>
+                    <a asp-action="Registro" class="text-decoration-none fw-bold ms-1">Regístrate aca</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Scripts de validación del lado del cliente -->
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,13 @@
+@model Usuario
+
+<h2>Mi Perfil Seguro</h2>
+
+<div class="card my-3" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.NombreUsuario</h5>
+        <h6 class="card-subtitle mb-2 text-muted">ID de Usuario: @Model.Id</h6>
+        <p class="card-text">Rol asignado: <strong>@Model.Rol</strong></p>
+    </div>
+</div>
+
+<a asp-controller="Cuenta" asp-action="Logout" class="btn btn-danger">Cerrar Sesión</a>
