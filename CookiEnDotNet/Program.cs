@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 // (En una BD real USAMOS AddScoped)
 builder.Services.AddSingleton<IRepoProducto, RepoProductooMem>();
 builder.Services.AddSingleton<IRepoUsuario, RepoUsuarioMem>();
+builder.Services.AddSingleton<IRepoCompra, RepoCompraEnMemoria>();
 
 // Configuramos el esquema de Autenticación por Cookies
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

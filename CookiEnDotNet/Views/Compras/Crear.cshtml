@@ -1,0 +1,57 @@
+@model CookiEnDotNet.Models.CrearCompraVM
+
+@{
+    ViewData["Title"] = "Crear Nueva Compra";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Realizar una Compra</h2>
+
+    <form asp-action="Crear" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Selección de Productos</h5>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover table-striped mb-0 align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Producto</th>
+                            <th class="text-end">Precio Unitario</th>
+                            <th style="width: 180px;" class="text-center">Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Productos.Count; i++)
+                        {
+                            <!-- Campos ocultos necesarios para reconstruir los datos que no se editan -->
+                            <input type="hidden" asp-for="Productos[i].ProductoId" />
+                            <input type="hidden" asp-for="Productos[i].NombreProducto" />
+                            <input type="hidden" asp-for="Productos[i].PrecioUnitario" />
+
+                            <tr>
+                                <td class="fw-bold">@Model.Productos[i].NombreProducto</td>
+                                <td class="text-end">@Model.Productos[i].PrecioUnitario.ToString("C")</td>
+                                <td>
+                                    <input asp-for="Productos[i].Cantidad" 
+                                        type="number" 
+                                        min="0" 
+                                        max="255" 
+                                        class="form-control text-center" />
+                                    <span asp-validation-for="Productos[i].Cantidad" class="text-danger small"></span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a asp-controller="Productos" asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-success btn-lg">Confirmar Compra</button>
+        </div>
+    </form>
+</div>

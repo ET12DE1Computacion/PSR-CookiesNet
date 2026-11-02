@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,13 +10,14 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CookiEnDotNet.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CookiEnDotNet</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -26,6 +28,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Cuenta" asp-action="Registro">Registro</a>
                         </li>
+                        @* Aca verificamos en la cookie que el usuario este logueado *@
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarComprasDropdown"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Compras
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarComprasDropdown">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Compras" asp-action="Crear">Comprar</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Compras"
+                                            asp-action="Historial">Historial</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -47,4 +68,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
